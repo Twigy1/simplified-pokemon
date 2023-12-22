@@ -9,7 +9,6 @@ function App() {
   const [nextPageURL,setNextPageURL] = useState()
   const [prevPageURL,setPrevPageURL] = useState()
   const [loading,setLoading] = useState(true)
-  
 
   useEffect(() => {
     setLoading(true)
@@ -20,7 +19,7 @@ function App() {
       setLoading(false)
       setNextPageURL(res.data.next)
       setPrevPageURL(res.data.previous)
-      setPokemon(res.data.results.map(p => p.name))
+      setPokemon(res.data.results.map(p => p))
     })
 
     return () => cancel()
@@ -43,6 +42,7 @@ function App() {
         gotoNextPage={nextPageURL ? gotoNextPage : null}
         gotoPrevPage={prevPageURL ? gotoPrevPage : null}
       />
+
 
       
     </>
