@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Card = ({poke}) => {
     let pokePicture = "";
 
-    // axios.get(poke.url).then(res => {
-    //     pokePicture = res.data.sprites.other["official-artwork"].front_default
-    // })
+     axios.get(poke.url).then(res => {
+         pokePicture = res.data.sprites.other["official-artwork"].front_default
+     })
 
   return (
     <>
