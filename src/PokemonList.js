@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from './Card'
+import PokeCard from './PokeCard'
 
 export default function PokemonList({pokemon}) {
   
@@ -8,7 +8,9 @@ export default function PokemonList({pokemon}) {
     <div>
       {pokemon.map(poke => (
         <>
-          <Card poke={poke}/>
+          <center>
+            <PokeCard poke={poke}/>
+          </center>
         </>
       ))}
     </div>

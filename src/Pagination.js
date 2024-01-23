@@ -1,10 +1,14 @@
 import React from 'react'
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 export default function Pagination({ gotoNextPage, gotoPrevPage}) {
   return (
-    <div>
-        {gotoPrevPage && <button onClick={gotoPrevPage}>Previous</button>}
-        {gotoNextPage && <button onClick={gotoNextPage}>Next</button>}
-    </div>
+    <>
+        <Stack spacing = {21} direction = "row" justifyContent="center">
+          {gotoPrevPage && <Button variant='contained' onClick={gotoPrevPage}>Previous</Button>}
+          {gotoNextPage && <Button variant='contained' onClick={gotoNextPage}>Next</Button>}
+        </Stack> 
+    </>
   )
 }
