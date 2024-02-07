@@ -21,10 +21,10 @@ function HomePage() {
       setPrevPageURL(res.data.previous)
       setPokemon(res.data.results.map(p => p))
     })
-
+    
     return () => cancel()
   }, [currentPageURL])
-
+  
   function gotoNextPage() {
     setCurrentPageURL(nextPageURL)
   }
