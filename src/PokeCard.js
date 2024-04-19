@@ -13,6 +13,7 @@ const capitalizeWords = (str) => {
 };
 
 const PokemonCard = ({poke}) => {
+  const [fileName, setFileName] = useState('')
   const [loading,setLoading] = useState(true)
   const [pokePic, setPokePic] = useState("")
   const [pokeHP, setPokeHP] = useState()
@@ -46,6 +47,9 @@ const PokemonCard = ({poke}) => {
     return () => cancel()
   },[])
 
+  
+
+  const basePath = './icons/'
 
   return (
     <>
@@ -75,7 +79,9 @@ const PokemonCard = ({poke}) => {
           {pokeTypes.map((type, index) => (
             <p key={index} style={{marginRight: '10px'}}>
               {capitalizeWords(type.type.name)}
-            </p>))}
+              <img src = {basePath + type.type.name + ".png"}/>
+            </p>
+          ))}
         </Typography>
         </CardContent>
       </Card>  
