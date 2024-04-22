@@ -12,8 +12,10 @@ const capitalizeWords = (str) => {
   return str.replace(/\b\w/g, (match) => match.toUpperCase());
 };
 
+
+
 const PokemonCard = ({poke}) => {
-  const [fileName, setFileName] = useState('')
+  const [textColor, setTextColor] = useState('black')
   const [loading,setLoading] = useState(true)
   const [pokePic, setPokePic] = useState("")
   const [pokeHP, setPokeHP] = useState()
@@ -24,7 +26,51 @@ const PokemonCard = ({poke}) => {
   const [pokeSPE, setPokeSPE] = useState()
   const [pokeAbility, setPokeAbility] = useState([])
   const [pokeTypes, setPokeTypes] = useState([])
+
   
+  const wordColor = (str) => {
+    switch (str) {
+      case "Bug":
+        return setTextColor('#90C12C');
+      case "Dark":
+        return setTextColor('#5A5366');
+      case "Dragon":
+        return setTextColor('#0A6DC4');;
+      case "Electric":
+        return setTextColor('#F3D23B');;
+      case "Fairy":
+        return setTextColor('#EC8FE6');;
+      case "Fighting":
+        return setTextColor('#CE4069');;
+      case "Fire":
+        return setTextColor('#FF9C54');;
+      case "Flying":
+        return setTextColor('#8FA8DD');;
+      case "Ghost":
+        return setTextColor('#5269AC');;
+      case "Grass":
+        return setTextColor('#63BB5B');;
+      case "Ground":
+        return setTextColor('#D97746');;
+      case "Ice":
+        return setTextColor('#74CEC0');;
+      case "Normal":
+        return setTextColor('#9099A1');;
+      case "Poison":
+        return setTextColor('#AB6AC8');;
+      case "Psychic":
+        return setTextColor('#F97176');;
+      case "Rock":
+        return setTextColor('#C7B78B');;
+      case "Steel":
+        return setTextColor('#5A8EA1');;
+      case "Water":
+        return setTextColor('#4D90D5');;
+      default:
+        return setTextColor('black');;
+    }
+  }
+
   useEffect(() => {
     setLoading(true)
     let cancel
@@ -47,9 +93,7 @@ const PokemonCard = ({poke}) => {
     return () => cancel()
   },[])
 
-  
-
-  const basePath = './icons/'
+  const basePath = "./icons/"
 
   return (
     <>
@@ -77,10 +121,12 @@ const PokemonCard = ({poke}) => {
         <Typography variant="body2" color="text.secondary" display = 'flex'>
           <p style={{marginRight: '10px'}}>Typing:</p> 
           {pokeTypes.map((type, index) => (
-            <p key={index} style={{marginRight: '10px'}}>
-              {capitalizeWords(type.type.name)}
-              <img src = {basePath + type.type.name + ".png"}/>
-            </p>
+            <div>
+              <p key={index} style={{marginRight: '10px', color: textColor}}>
+                {capitalizeWords(type.type.name)}
+              </p>
+              <img src = {require(basePath + type.type.name + ".png")} key={index} height={50} width={50}/>
+            </div>
           ))}
         </Typography>
         </CardContent>
