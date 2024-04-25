@@ -5,7 +5,7 @@ import axios from 'axios';
 
 function HomePage() {
   const [pokemon, setPokemon] = useState([])
-  const [currentPageURL,setCurrentPageURL] = useState("https://pokeapi.co/api/v2/pokemon")
+  const [currentPageURL,setCurrentPageURL] = useState("https://pokeapi.co/api/v2/pokemon/?limit=21")
   const [nextPageURL,setNextPageURL] = useState()
   const [prevPageURL,setPrevPageURL] = useState()
   const [loading,setLoading] = useState(true)

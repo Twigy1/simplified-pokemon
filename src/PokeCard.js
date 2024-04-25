@@ -90,14 +90,18 @@ const PokemonCard = ({poke}) => {
 
     })
 
+
+
     return () => cancel()
-  },[])
+  },[poke.url])
 
   const basePath = "./icons/"
 
+  
+
   return (
     <>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 345, color: textColor }}>
       <Typography gutterBottom variant="h5" component="div">{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</Typography>
         <CardMedia
         sx={{ height: 320 }}
@@ -122,7 +126,7 @@ const PokemonCard = ({poke}) => {
           <p style={{marginRight: '10px'}}>Typing:</p> 
           {pokeTypes.map((type, index) => (
             <div>
-              <p key={index} style={{marginRight: '10px', color: textColor}}>
+              <p key={index} style={{marginRight: '10px'}}>
                 {capitalizeWords(type.type.name)}
               </p>
               <img src = {require(basePath + type.type.name + ".png")} key={index} height={50} width={50}/>
