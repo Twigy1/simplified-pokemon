@@ -12,7 +12,9 @@ const capitalizeWords = (str) => {
   return str.replace(/\b\w/g, (match) => match.toUpperCase());
 };
 
-
+const removeHyphen = (str) => {
+  return str.replace(/-/g, " ")
+}
 
 const PokemonCard = ({poke}) => {
   const [textColor, setTextColor] = useState('black')
@@ -30,41 +32,41 @@ const PokemonCard = ({poke}) => {
   
   const wordColor = (str) => {
     switch (str) {
-      case "Bug":
+      case "bug":
         return setTextColor('#90C12C');
-      case "Dark":
+      case "dark":
         return setTextColor('#5A5366');
-      case "Dragon":
+      case "dragon":
         return setTextColor('#0A6DC4');;
-      case "Electric":
+      case "electric":
         return setTextColor('#F3D23B');;
-      case "Fairy":
+      case "fairy":
         return setTextColor('#EC8FE6');;
-      case "Fighting":
+      case "fighting":
         return setTextColor('#CE4069');;
-      case "Fire":
+      case "fire":
         return setTextColor('#FF9C54');;
-      case "Flying":
+      case "flying":
         return setTextColor('#8FA8DD');;
-      case "Ghost":
+      case "ghost":
         return setTextColor('#5269AC');;
-      case "Grass":
+      case "grass":
         return setTextColor('#63BB5B');;
-      case "Ground":
+      case "ground":
         return setTextColor('#D97746');;
-      case "Ice":
+      case "ice":
         return setTextColor('#74CEC0');;
-      case "Normal":
+      case "normal":
         return setTextColor('#9099A1');;
-      case "Poison":
+      case "poison":
         return setTextColor('#AB6AC8');;
-      case "Psychic":
+      case "psychic":
         return setTextColor('#F97176');;
-      case "Rock":
+      case "rock":
         return setTextColor('#C7B78B');;
-      case "Steel":
+      case "steel":
         return setTextColor('#5A8EA1');;
-      case "Water":
+      case "water":
         return setTextColor('#4D90D5');;
       default:
         return setTextColor('black');;
@@ -87,7 +89,7 @@ const PokemonCard = ({poke}) => {
       setPokeSPE(res.data.stats[5].base_stat)
       setPokeAbility(res.data.abilities)
       setPokeTypes(res.data.types)
-
+      wordColor(res.data.types[0].type.name)
     })
 
 
@@ -109,20 +111,20 @@ const PokemonCard = ({poke}) => {
         title="pokemon"
       />
         <CardContent>
-        <Typography variant="body2" color="text.secondary">HP: {pokeHP}</Typography>
-        <Typography variant="body2" color="text.secondary">ATK: {pokeATK}</Typography>
-        <Typography variant="body2" color="text.secondary">DEF: {pokeDEF}</Typography>
-        <Typography variant="body2" color="text.secondary">SPA: {pokeSPA}</Typography>
-        <Typography variant="body2" color="text.secondary">SPD: {pokeSPD}</Typography>
-        <Typography variant="body2" color="text.secondary">SPE: {pokeSPE}</Typography>
-        <Typography variant="body2" color="text.secondary" display = 'flex' align='right'>
+        <Typography variant="body2" color={textColor}>HP: {pokeHP}</Typography>
+        <Typography variant="body2" color={textColor}>ATK: {pokeATK}</Typography>
+        <Typography variant="body2" color={textColor}>DEF: {pokeDEF}</Typography>
+        <Typography variant="body2" color={textColor}>SPA: {pokeSPA}</Typography>
+        <Typography variant="body2" color={textColor}>SPD: {pokeSPD}</Typography>
+        <Typography variant="body2" color={textColor}>SPE: {pokeSPE}</Typography>
+        <Typography variant="body2" color={textColor} display = 'flex' align='right'>
           <p style={{marginRight: '10px'}}>Abilities:</p>
           {pokeAbility.map((ability, index) => (
             <p key={index} style={{marginRight: '10px'}}>
-              {capitalizeWords(ability.ability.name)}
+              {capitalizeWords(removeHyphen(ability.ability.name))}
             </p>))}
         </Typography>
-        <Typography variant="body2" color="text.secondary" display = 'flex'>
+        <Typography variant="body2" color={textColor} display = 'flex'>
           <p style={{marginRight: '10px'}}>Typing:</p> 
           {pokeTypes.map((type, index) => (
             <div>
