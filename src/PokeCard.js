@@ -6,7 +6,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
-import { TableBody, TableRow } from '@mui/material';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
+import Box from '@mui/material/Box';
 
 const capitalizeWords = (str) => {
   return str.replace(/\b\w/g, (match) => match.toUpperCase());
@@ -103,38 +104,102 @@ const PokemonCard = ({poke}) => {
 
   return (
     <>
-      <Card sx={{ maxWidth: 345, color: textColor }}>
-      <Typography gutterBottom variant="h5" component="div">{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</Typography>
-        <CardMedia
-        sx={{ height: 320 }}
-        image= {pokePic}
-        title="pokemon"
-      />
+      <Card sx={{ maxWidth: 345, minHeight: 850, color: textColor }}>
+        <Typography gutterBottom variant="h5" component="div">{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</Typography>
+          <CardMedia
+          sx={{ height: 320 }}
+          image= {pokePic}
+          title="pokemon"
+        />
         <CardContent>
-        <Typography variant="body2" color={textColor}>HP: {pokeHP}</Typography>
-        <Typography variant="body2" color={textColor}>ATK: {pokeATK}</Typography>
-        <Typography variant="body2" color={textColor}>DEF: {pokeDEF}</Typography>
-        <Typography variant="body2" color={textColor}>SPA: {pokeSPA}</Typography>
-        <Typography variant="body2" color={textColor}>SPD: {pokeSPD}</Typography>
-        <Typography variant="body2" color={textColor}>SPE: {pokeSPE}</Typography>
-        <Typography variant="body2" color={textColor} display = 'flex' align='right'>
-          <p style={{marginRight: '10px'}}>Abilities:</p>
-          {pokeAbility.map((ability, index) => (
-            <p key={index} style={{marginRight: '10px'}}>
-              {capitalizeWords(removeHyphen(ability.ability.name))}
-            </p>))}
-        </Typography>
-        <Typography variant="body2" color={textColor} display = 'flex'>
-          <p style={{marginRight: '10px'}}>Typing:</p> 
-          {pokeTypes.map((type, index) => (
-            <div>
-              <p key={index} style={{marginRight: '10px'}}>
-                {capitalizeWords(type.type.name)}
-              </p>
-              <img src = {require(basePath + type.type.name + ".png")} key={index} height={50} width={50}/>
-            </div>
-          ))}
-        </Typography>
+          <TableContainer component={Paper}>
+            <Table  sx = {{color: textColor}} size='small'>
+            <TableRow>
+              <TableCell sx = {{width: 70}}>HP : {pokeHP} </TableCell>
+              <TableCell>
+                <Box sx={{
+                  width: 150 * (pokeHP/255),
+                  height: 20,
+                  borderRadius: 1,
+                  bgcolor: '#69DC12'}}
+                />
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell sx = {{width: 70}}>ATK : {pokeATK} </TableCell>
+              <TableCell>
+                <Box sx={{
+                  width: 150 * (pokeATK/255),
+                  height: 20,
+                  borderRadius: 1,
+                  bgcolor: '#FF9C54'}}
+                />
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell sx = {{width: 70}}>DEF : {pokeDEF} </TableCell>
+              <TableCell>
+                <Box sx={{
+                  width: 150 * (pokeDEF/255),
+                  height: 20,
+                  borderRadius: 1,
+                  bgcolor: '#F3D23B'}}
+                />
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell sx = {{width: 70}}>SPA : {pokeSPA} </TableCell>
+              <TableCell>
+                <Box sx={{
+                  width: 150 * (pokeSPA/255),
+                  height: 20,
+                  borderRadius: 1,
+                  bgcolor: '#4D90D5'}}
+                />
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell sx = {{width: 70}}>SPD : {pokeSPD} </TableCell>
+              <TableCell>
+                <Box sx={{
+                  width: 150 * (pokeSPD/255),
+                  height: 20,
+                  borderRadius: 1,
+                  bgcolor: '#AB6AC8'}}
+                />
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell sx = {{width: 70}}>SPE : {pokeSPE} </TableCell>
+              <TableCell>
+                <Box sx={{
+                  width: 150 * (pokeSPE/255),
+                  height: 20,
+                  borderRadius: 1,
+                  bgcolor: '#5A8EA1'}}
+                />
+              </TableCell>
+            </TableRow>
+            </Table>
+          </TableContainer>
+          <Typography margin={'0px'} gap={'5px'} variant="body2" color={textColor} align='left'>
+            <p style={{marginRight: '0px'}}>Abilities:</p>
+            {pokeAbility.map((ability, index) => (
+              <p key={index} style={{marginRight: '0px'}}>
+                {capitalizeWords(removeHyphen(ability.ability.name))}
+              </p>))}
+          </Typography>
+          <Typography variant="body2" color={textColor} display = 'flex'>
+            <p style={{marginRight: '10px'}}>Typing:</p> 
+            {pokeTypes.map((type, index) => (
+              <div>
+                <p key={index} style={{marginRight: '10px'}}>
+                  {capitalizeWords(type.type.name)}
+                </p>
+                <img src = {require(basePath + type.type.name + ".png")} key={index} height={50} width={50}/>
+              </div>
+            ))}
+          </Typography>
         </CardContent>
       </Card>  
     </>
